@@ -1,0 +1,31 @@
+/* Global */
+:root {
+  --bg: #f7f8fb;
+  --muted: #6b7280;
+  --accent1: #6a11cb;
+  --accent2: #2575fc;
+  --glass: rgba(255,255,255,0.7);
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(180deg,#f6f7fb 0%, #f2f5fb 100%);
+  color: #0f1724;
+}
+
+/* small utility */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 12px; }
+
+/* links */
+a { color: var(--accent1); text-decoration: none; }
+
+/* ensure charts and canvas elements behave */
+canvas { max-width: 100% !important; }
+
+/* smooth everything */
+* { transition: background 160ms ease, color 160ms ease; }

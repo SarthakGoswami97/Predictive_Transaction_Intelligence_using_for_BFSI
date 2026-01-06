@@ -1,0 +1,296 @@
+/* ============================================
+   CLEAN PROFESSIONAL SIDEBAR
+============================================ */
+
+.sidebar {
+  width: 220px;
+  height: calc(100vh - 84px);
+  background: #ffffff;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: fixed;
+  left: 16px;
+  top: 80px;
+  z-index: 100;
+  border: 1px solid #f1f5f9;
+}
+
+.sidebar.collapsed {
+  width: 68px;
+}
+
+/* ============ HEADER ============ */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon-wrapper {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sidebar-logo-icon {
+  color: white;
+  font-size: 16px;
+}
+
+.logo-text {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.logo-text .brand-main {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.logo-text .brand-accent {
+  font-size: 15px;
+  font-weight: 700;
+  color: #6366f1;
+}
+
+.collapse-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 150ms ease;
+}
+
+.collapse-btn:hover {
+  background: #f8fafc;
+  color: #1e293b;
+}
+
+.collapse-icon {
+  font-size: 12px;
+  transition: transform 200ms ease;
+}
+
+.collapse-icon.rotated {
+  transform: rotate(180deg);
+}
+
+/* ============ NAVIGATION ============ */
+.sidebar-nav {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+}
+
+.nav-section {
+  margin-bottom: 6px;
+}
+
+.nav-section-title {
+  font-size: 10px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0 10px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+/* Sliding Active Indicator */
+.active-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 42px;
+  background: #f8fafc;
+  border-radius: 8px;
+  z-index: 0;
+  border-left: 3px solid #6366f1;
+}
+
+/* Menu Item */
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 2px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: all 150ms ease;
+}
+
+.menu-item:hover:not(.active) {
+  background: #f8fafc;
+}
+
+.menu-icon-wrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  color: #64748b;
+  transition: all 150ms ease;
+  flex-shrink: 0;
+}
+
+.menu-icon-wrapper.active {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+}
+
+.menu-icon {
+  font-size: 16px;
+}
+
+.menu-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+  white-space: nowrap;
+}
+
+.menu-item.active .menu-label {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.menu-badge {
+  margin-left: auto;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.menu-badge.new {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.menu-badge.count {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+/* ============ FOOTER ============ */
+.sidebar-footer {
+  padding: 8px 12px 12px;
+  margin-top: auto;
+  border-top: 1px solid #f1f5f9;
+}
+
+.footer-divider {
+  display: none;
+}
+
+.footer-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 150ms ease;
+}
+
+.footer-btn:hover {
+  background: #f8fafc;
+  color: #1e293b;
+}
+
+.footer-icon {
+  font-size: 16px;
+}
+
+.version-info {
+  text-align: center;
+  padding: 8px;
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+/* ============ COLLAPSED STATE ============ */
+.sidebar.collapsed .sidebar-header {
+  justify-content: center;
+  padding: 14px 10px;
+}
+
+.sidebar.collapsed .collapse-btn {
+  position: absolute;
+  right: -10px;
+  top: 18px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.sidebar.collapsed .menu-item {
+  justify-content: center;
+  padding: 10px 6px;
+}
+
+.sidebar.collapsed .footer-btn {
+  justify-content: center;
+  padding: 8px 6px;
+}
+
+/* ============ SCROLLBAR ============ */
+.sidebar-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 2px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+}

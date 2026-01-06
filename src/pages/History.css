@@ -1,0 +1,489 @@
+.page-container {
+  padding: 0;
+}
+
+.history-container {
+  padding: 0;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: transparent;
+  min-height: 100vh;
+}
+
+.history-header {
+  margin-bottom: 24px;
+}
+
+.history-container h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: #1e293b;
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: #1e293b;
+  background-clip: unset;
+}
+
+.history-subtitle {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Stats Cards */
+.history-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.stat-box {
+  padding: 14px 16px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: white;
+  border: 1px solid #f1f5f9;
+  color: #1e293b;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 200ms ease;
+}
+
+.stat-box:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-color: #e2e8f0;
+}
+
+.stat-box.fraud {
+  background: white;
+}
+
+.stat-box.legit {
+  background: white;
+}
+
+.stat-box.amount {
+  background: white;
+}
+
+.stat-box.risk {
+  background: white;
+}
+
+.stat-box.fraud .stat-number { color: #ef4444; }
+.stat-box.legit .stat-number { color: #10b981; }
+.stat-box.amount .stat-number { color: #6366f1; }
+.stat-box.risk .stat-number { color: #f97316; }
+
+.stat-label {
+  font-size: 11px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-number {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Controls */
+.history-controls {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f1f5f9;
+}
+
+.search-box {
+  margin-bottom: 16px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e5f0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #2575fc;
+  box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.1);
+}
+
+.filters-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.filter-select {
+  padding: 10px 12px;
+  border: 2px solid #e0e5f0;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+  color: #0f1724;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #2575fc;
+  box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.1);
+}
+
+.filter-select:hover {
+  border-color: #2575fc;
+}
+
+/* Card Wrapper */
+.history-table-wrapper {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+  margin-bottom: 24px;
+  border: 1px solid #eef2f7;
+  transition: all 0.3s ease;
+}
+
+.history-table-wrapper:hover {
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+}
+
+/* Table */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+/* Header */
+.history-table th {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 18px;
+  font-size: 13px;
+  text-align: left;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.history-table th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.history-table th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+/* Table rows */
+.history-table td {
+  padding: 16px 18px;
+  background: white;
+  border-bottom: 1px solid #f0f2f7;
+  font-size: 14px;
+  color: #0f1724;
+  transition: all 0.2s ease;
+}
+
+.history-table tbody tr:hover td {
+  background: #f8f9fc;
+  border-bottom-color: #e0e5f0;
+}
+
+.history-table tr:nth-child(even) td {
+  background: #fbfcfd;
+}
+
+.history-table tbody tr:nth-child(even):hover td {
+  background: #f5f7fc;
+}
+
+.history-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Fraud & Legit Tags */
+.tag {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.tag.fraud {
+  background: linear-gradient(135deg, #ea4335, #c5221f);
+}
+
+.tag.legit {
+  background: linear-gradient(135deg, #34a853, #188038);
+}
+
+/* Enhanced Table Row Styling */
+.row-fraud td {
+  border-left: 4px solid #ea4335;
+}
+
+.row-legit td {
+  border-left: 4px solid #34a853;
+}
+
+.row-fraud:hover td {
+  background: #ffebee !important;
+}
+
+.row-legit:hover td {
+  background: #e8f5e9 !important;
+}
+
+.txn-id, .cust-id {
+  font-weight: 600;
+  color: #1976d2;
+}
+
+.amount {
+  font-weight: 700;
+  color: #2196f3;
+}
+
+.risk-score {
+  padding: 8px 12px !important;
+}
+
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  background: linear-gradient(90deg, #2196f3, #1e88e5);
+  color: white;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 12px;
+  min-width: 50px;
+}
+
+.row-number {
+  background: #f0f7ff;
+  font-weight: 600;
+  color: #1565c0;
+  text-align: center;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-pagination {
+  padding: 10px 16px;
+  border: 2px solid #e0e5f0;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #1976d2;
+  font-size: 13px;
+  transition: all 0.3s ease;
+}
+
+.btn-pagination:hover:not(:disabled) {
+  background: #1976d2;
+  color: white;
+  border-color: #1976d2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+}
+
+.btn-pagination:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: #999;
+}
+
+.page-indicator {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1976d2;
+  padding: 6px 12px;
+  background: #f0f7ff;
+  border-radius: 6px;
+  min-width: 100px;
+  text-align: center;
+}
+
+/* No data message */
+.no-data-box {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 2px dashed #d0dce8;
+}
+
+.no-data-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.no-data {
+  margin: 0;
+  font-size: 16px;
+  color: #5a6b79;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .history-container {
+    padding: 24px;
+  }
+
+  .history-table-wrapper {
+    padding: 24px;
+  }
+
+  .history-table th,
+  .history-table td {
+    padding: 14px;
+    font-size: 13px;
+  }
+
+  .tag {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .filters-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .history-container {
+    padding: 16px;
+  }
+
+  .history-container h2 {
+    font-size: 26px;
+    margin-bottom: 24px;
+  }
+
+  .history-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .history-table-wrapper {
+    padding: 16px;
+    overflow-x: auto;
+  }
+
+  .history-table {
+    min-width: 700px;
+  }
+
+  .history-table th,
+  .history-table td {
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .tag {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .pagination {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pagination-controls {
+    justify-content: center;
+  }
+
+  .filters-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .history-container {
+    padding: 12px;
+  }
+
+  .history-container h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .history-stats {
+    grid-template-columns: 1fr;
+    border-radius: 10px;
+  }
+
+  .history-table {
+    min-width: 600px;
+  }
+
+  .history-table th,
+  .history-table td {
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  .history-table th {
+    font-size: 10px;
+  }
+
+  .tag {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+}

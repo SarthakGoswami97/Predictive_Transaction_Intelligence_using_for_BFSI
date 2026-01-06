@@ -1,0 +1,304 @@
+.metrics-container {
+  padding: 0;
+  width: 100%;
+  background: transparent;
+  min-height: 100vh;
+}
+
+.metrics-container h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #1e293b;
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: #1e293b;
+  background-clip: unset;
+}
+
+/* ====== PERFORMANCE TABLE ====== */
+.metrics-table-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  max-width: 700px;
+  margin: 0 auto 32px;
+  border: 1px solid #f1f5f9;
+  transition: all 200ms ease;
+}
+
+.metrics-table-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-color: #e2e8f0;
+}
+
+.metrics-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.metrics-table th {
+  background: #f8fafc;
+  color: #475569;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.metrics-table th:first-child {
+  border-radius: 8px 0 0 0;
+}
+
+.metrics-table th:last-child {
+  border-radius: 0 8px 0 0;
+}
+
+.metrics-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+  color: #1e293b;
+  transition: background 150ms ease;
+}
+
+.metrics-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.metrics-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.metrics-table tbody tr:nth-child(odd) td {
+  background: transparent;
+}
+
+/* ===== ROW LAYOUT ===== */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 32px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: stretch;
+}
+
+/* ===== CARD STYLE ===== */
+.metrics-card {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  text-align: center;
+  border: 1px solid #f1f5f9;
+  transition: all 200ms ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+}
+
+.metrics-card:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  border-color: #d0dce8;
+  transform: translateY(-4px);
+}
+
+.metrics-card h3 {
+  margin: 0 0 28px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f1724;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+.metrics-card canvas {
+  width: 100% !important;
+  height: auto !important;
+  flex: 1;
+  display: block;
+}
+
+/* ===== CONFUSION MATRIX ===== */
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+  flex: 1;
+  align-items: center;
+  justify-items: stretch;
+}
+
+.matrix-card {
+  padding: 32px 20px;
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.matrix-card:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.matrix-title {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.matrix-value {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+/* COLORS */
+.tn { 
+  background: linear-gradient(135deg, #1a73e8, #1557c0);
+}
+
+.fp { 
+  background: linear-gradient(135deg, #ea4335, #c5221f);
+}
+
+.fn { 
+  background: linear-gradient(135deg, #fbbc04, #f9a825);
+  color: #333;
+}
+
+.tp { 
+  background: linear-gradient(135deg, #34a853, #188038);
+}
+
+.error-text {
+  color: #ea4335;
+  font-weight: 600;
+  text-align: center;
+  margin: 20px 0;
+  font-size: 14px;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .metrics-row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .metrics-card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .metrics-container {
+    padding: 20px;
+  }
+
+  .metrics-container h2 {
+    font-size: 26px;
+    margin-bottom: 24px;
+  }
+
+  .metrics-table-card {
+    padding: 20px;
+  }
+
+  .metrics-card {
+    padding: 24px;
+  }
+
+  .metrics-card h3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .matrix-grid {
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .matrix-card {
+    padding: 24px 16px;
+  }
+
+  .matrix-value {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .metrics-container {
+    padding: 16px;
+  }
+
+  .metrics-container h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .metrics-table-card {
+    padding: 16px;
+  }
+
+  .metrics-table th {
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .metrics-table td {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .metrics-row {
+    gap: 20px;
+  }
+
+  .metrics-card {
+    padding: 20px;
+  }
+
+  .metrics-card h3 {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .matrix-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .matrix-card {
+    padding: 20px 12px;
+  }
+
+  .matrix-title {
+    font-size: 12px;
+  }
+
+  .matrix-value {
+    font-size: 24px;
+  }
+}

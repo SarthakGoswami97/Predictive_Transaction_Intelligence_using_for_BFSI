@@ -1,70 +1,184 @@
-# Getting Started with Create React App
+# 🔐 BFSI Predictive Fraud Detection System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An AI-powered fraud detection dashboard for Banking, Financial Services, and Insurance (BFSI) sector. This system uses machine learning models and LLM-based explanations to detect and analyze fraudulent transactions.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+- **Dashboard** - Real-time fraud statistics, charts, and analytics
+- **Fraud Prediction** - Single transaction and bulk CSV prediction
+- **Model Metrics** - Accuracy, Precision, Recall, F1-Score visualization
+- **Transaction History** - Searchable, filterable transaction logs
+- **KYC Verification** - Built-in Aadhaar/PAN verification
+- **Dark/Light Theme** - Toggle between themes
+- **Responsive Design** - Works on desktop and mobile
 
-### `npm start`
+## 📦 Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+| Technology | Purpose |
+|------------|---------|
+| React 19 | Frontend framework |
+| Chart.js | Data visualization |
+| Framer Motion | Animations |
+| Axios | API communication |
+| React Toastify | Notifications |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Installation
 
-### `npm test`
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Steps
 
-### `npm run build`
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/SarthakGoswami97/bfsi_predictive_ai.git
+   cd bfsi_predictive_ai
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Configure environment**
+   ```bash
+   # Copy example env file
+   cp .env.example .env
+   
+   # Edit .env with your settings
+   # REACT_APP_BACKEND_URL=http://localhost:8000
+   # REACT_APP_USE_MOCK=true
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Start the development server**
+   ```bash
+   npm start
+   ```
+   
+   Opens at [http://localhost:3001](http://localhost:3001)
 
-### `npm run eject`
+## 🔧 Configuration
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Environment Variables
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `REACT_APP_BACKEND_URL` | Backend API URL | `http://localhost:8000` |
+| `REACT_APP_USE_MOCK` | Use mock data (no backend) | `true` |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Switching to Real Backend
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Set up your Flask/FastAPI backend
+2. Update `.env`:
+   ```
+   REACT_APP_BACKEND_URL=http://your-backend-url:8000
+   REACT_APP_USE_MOCK=false
+   ```
+3. Restart the app
 
-## Learn More
+## 📡 API Endpoints (Expected from Backend)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/predict` | POST | Fraud prediction |
+| `/api/explain` | POST | LLM explanation |
+| `/api/metrics` | GET | Model performance metrics |
+| `/api/auth/login` | POST | User authentication |
+| `/api/history` | GET | Transaction history |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Sample Request/Response
 
-### Code Splitting
+**POST /api/predict**
+```json
+// Request
+{
+  "customer_id": "C001",
+  "transaction_amount": 50000,
+  "channel": "Online",
+  "account_age_days": 180,
+  "kyc_verified": 1
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+// Response
+{
+  "transaction_id": "TXN12345",
+  "prediction": "Fraud",
+  "confidence": 0.85,
+  "explanation": "High amount and unusual channel detected"
+}
+```
 
-### Analyzing the Bundle Size
+## 👤 Default Login
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+Email: admin@gmail.com
+Password: admin123
+```
 
-### Making a Progressive Web App
+## 📁 Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+src/
+├── api.js              # API configuration (mock/real)
+├── App.js              # Main app component
+├── ThemeContext.jsx    # Dark/Light theme provider
+├── utils/
+│   └── toast.js        # Notification utilities
+├── components/
+│   ├── Dashboard.jsx   # Main dashboard with charts
+│   ├── Navbar.jsx      # Top navigation
+│   ├── Sidebar.jsx     # Side navigation
+│   ├── Profile.jsx     # User profile panel
+│   └── Loader.jsx      # Loading spinners
+└── pages/
+    ├── Login.jsx       # Login page
+    ├── Predict.jsx     # Fraud prediction page
+    ├── Metrics.jsx     # Model metrics page
+    └── History.jsx     # Transaction history page
+```
 
-### Advanced Configuration
+## 🏗️ Building for Production
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+npm run build
+```
 
-### Deployment
+The build output will be in the `build/` folder, ready for deployment.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🚢 Deployment
 
-### `npm run build` fails to minify
+### Vercel (Recommended)
+```bash
+npm install -g vercel
+vercel
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Netlify
+```bash
+npm run build
+# Upload build/ folder to Netlify
+```
+
+## 📊 Milestones
+
+- [x] **Milestone 1**: Data preprocessing and initial setup
+- [x] **Milestone 2**: ML model development
+- [x] **Milestone 3**: LLM integration for explanations
+- [ ] **Milestone 4**: Full integration and deployment
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is for educational purposes as part of Infosys training.
+
+---
+
+**Built with ❤️ for BFSI Fraud Detection**
