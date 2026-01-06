@@ -3,25 +3,26 @@
 ============================================ */
 
 .sidebar {
-  width: 220px;
-  height: calc(100vh - 84px);
-  background: #ffffff;
+  width: 240px;
+  height: 100vh;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafb 100%);
   padding: 0;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  border-radius: 12px;
-  overflow: hidden;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
   flex-shrink: 0;
   position: fixed;
-  left: 16px;
-  top: 80px;
+  left: 0;
+  top: 0;
   z-index: 100;
-  border: 1px solid #f1f5f9;
+  border: none;
+  border-right: 1px solid #e2e8f0;
+  padding-top: 64px;
 }
 
 .sidebar.collapsed {
-  width: 68px;
+  width: 80px;
 }
 
 /* ============ HEADER ============ */
@@ -29,8 +30,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px;
-  border-bottom: 1px solid #f1f5f9;
+  padding: 20px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  margin: -64px 0 0 0;
+  padding-top: 84px;
 }
 
 .sidebar-logo {
@@ -40,19 +44,20 @@
 }
 
 .logo-icon-wrapper {
-  width: 34px;
-  height: 34px;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  backdrop-filter: blur(10px);
 }
 
 .sidebar-logo-icon {
-  color: white;
-  font-size: 16px;
+  color: #fbbf24;
+  font-size: 18px;
 }
 
 .logo-text {
@@ -64,22 +69,22 @@
 .logo-text .brand-main {
   font-size: 15px;
   font-weight: 700;
-  color: #1e293b;
+  color: white;
 }
 
 .logo-text .brand-accent {
   font-size: 15px;
   font-weight: 700;
-  color: #6366f1;
+  color: #fbbf24;
 }
 
 .collapse-btn {
   width: 26px;
   height: 26px;
   border-radius: 6px;
-  border: 1px solid #e2e8f0;
-  background: white;
-  color: #64748b;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -88,8 +93,8 @@
 }
 
 .collapse-btn:hover {
-  background: #f8fafc;
-  color: #1e293b;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fbbf24;
 }
 
 .collapse-icon {

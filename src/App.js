@@ -65,21 +65,22 @@ function App() {
     <ThemeProvider>
       <div className="app-container">
         <Navbar onLogout={handleLogout} customerId={currentCustomerId} />
+        <Sidebar activePage={activePage} setActivePage={setActivePage} />
 
         <div className="main-content">
-          <Sidebar activePage={activePage} setActivePage={setActivePage} />
-
-          {/* 🟣 ANIMATED PAGE TRANSITIONS */}
-          <motion.div
-            key={activePage}
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            style={{ width: "100%", height: "100%" }}
-          >
-            {renderPage()}
-          </motion.div>
+          <div className="main-content-inner">
+            {/* 🟣 ANIMATED PAGE TRANSITIONS */}
+            <motion.div
+              key={activePage}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -30 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              style={{ width: "100%" }}
+            >
+              {renderPage()}
+            </motion.div>
+          </div>
         </div>
       </div>
     </ThemeProvider>

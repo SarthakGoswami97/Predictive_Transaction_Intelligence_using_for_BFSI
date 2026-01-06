@@ -6,9 +6,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   padding: 0 32px;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
   position: fixed;
   top: 0;
   left: 0;
@@ -19,7 +19,7 @@
 }
 
 .top-navbar.scrolled {
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.25);
 }
 
 /* ============ LEFT - BRAND ============ */
@@ -35,39 +35,39 @@
 }
 
 .brand-logo {
-  width: 38px;
-  height: 38px;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .logo-icon {
-  color: white;
-  font-size: 18px;
+  color: #fbbf24;
+  font-size: 20px;
 }
 
 .brand-text {
   display: flex;
-  align-items: baseline;
-  gap: 0;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .brand-main {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
-  color: #1e293b;
+  color: white;
   letter-spacing: -0.3px;
 }
 
 .brand-tagline {
   font-size: 11px;
-  color: #6366f1;
-  font-weight: 600;
-  margin-left: 6px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
 }
 
 /* ============ CENTER - SEARCH ============ */
@@ -80,22 +80,23 @@
 .search-container {
   display: flex;
   align-items: center;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   padding: 0 12px;
   height: 40px;
   transition: all 200ms ease;
+  backdrop-filter: blur(10px);
 }
 
 .search-container:focus-within {
-  background: #ffffff;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
 }
 
 .search-icon {
-  color: #94a3b8;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 15px;
   margin-right: 8px;
   flex-shrink: 0;
@@ -106,13 +107,13 @@
   border: none;
   background: transparent;
   font-size: 14px;
-  color: #1e293b;
+  color: white;
   outline: none;
   min-width: 0;
 }
 
 .search-input::placeholder {
-  color: #94a3b8;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .search-shortcut {
@@ -138,8 +139,8 @@
   height: 38px;
   border-radius: 8px;
   border: none;
-  background: transparent;
-  color: #64748b;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
   cursor: pointer;
   display: flex;
   align-items: center;
