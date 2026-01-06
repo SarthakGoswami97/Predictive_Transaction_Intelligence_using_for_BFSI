@@ -1,8 +1,8 @@
 // ALWAYS AT TOP
 import axios from "axios";
 
-// Use environment variable, defaults to true for development
-const USE_MOCK = process.env.REACT_APP_USE_MOCK === "true" || process.env.REACT_APP_USE_MOCK === undefined;
+// Use environment variable, defaults to false for production (use real API by default)
+const USE_MOCK = process.env.REACT_APP_USE_MOCK === "true";
 
 // 🔹 MOCK API (works when backend is not available)
 const mockApi = {
@@ -22,6 +22,7 @@ const mockApi = {
           explanation: payload.transaction_amount > 10000 
             ? "High transaction amount detected. Pattern suggests potential fraud."
             : "Transaction appears normal based on historical patterns.",
+          status: "success"
         },
       };
     }
@@ -98,8 +99,32 @@ const mockApi = {
 // 🔹 REAL API (used when backend is ready)
 const realApi = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL || "http://localhost:8000",
-  timeout: 10000,
+  timeout: 30000,
 });
+
+// Add request interceptor to include auth token
+realApi.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("auth_token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// Add response interceptor for error handling
+realApi.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem("auth_token");
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  }
+);
 
 // 🔹 Export the correct one
 const api = USE_MOCK ? mockApi : realApi;

@@ -1,0 +1,395 @@
+.dashboard-enhanced-container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+}
+
+/* Tabs Navigation */
+.tabs-container {
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.tabs-wrapper {
+  display: flex;
+  gap: 0;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 18px 20px;
+  background: white;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: #666;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-bottom: 3px solid transparent;
+  position: relative;
+}
+
+.tab-btn:hover {
+  background: #f9fafb;
+  color: #333;
+}
+
+.tab-btn.active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+  background: #f0f4ff;
+}
+
+.tab-icon {
+  font-size: 18px;
+}
+
+/* Tab Content */
+.tab-content {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab-pane {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  min-height: 500px;
+}
+
+/* Overview Tab */
+.overview-tab {
+  padding: 0;
+}
+
+/* Prediction Tab */
+.prediction-tab {
+  padding: 0;
+}
+
+/* History Tab */
+.history-container {
+  width: 100%;
+}
+
+.history-container h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 28px;
+  color: #1f2937;
+}
+
+.history-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.history-table thead {
+  background: #f3f4f6;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.history-table th {
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 700;
+  color: #374151;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.history-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.history-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.txn-id {
+  font-weight: 600;
+  color: #1f2937;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.badge.fraud {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.badge.legit {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.risk-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.risk-bar {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  width: 100px;
+  overflow: hidden;
+}
+
+.risk-bar > div {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.risk-text {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 12px;
+  min-width: 35px;
+}
+
+.timestamp {
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-state p {
+  color: #6b7280;
+  font-size: 16px;
+}
+
+/* Performance Tab */
+.performance-container {
+  width: 100%;
+}
+
+.performance-container h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 28px;
+  color: #1f2937;
+}
+
+.metrics-loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.metric-card {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 25px;
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.metric-card.metric-card-wide {
+  grid-column: 1 / -1;
+}
+
+.metric-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.metric-icon {
+  font-size: 24px;
+}
+
+.metric-name {
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metric-value {
+  font-size: 42px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 15px;
+  font-family: "Courier New", monospace;
+}
+
+.metric-value.large {
+  font-size: 48px;
+}
+
+.metric-bar {
+  height: 8px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.metric-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.metric-fill.accuracy {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.metric-fill.precision {
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+}
+
+.metric-fill.recall {
+  background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
+}
+
+.metric-fill.f1 {
+  background: linear-gradient(90deg, #06b6d4 0%, #0891b2 100%);
+}
+
+.metric-fill.auc {
+  background: linear-gradient(90deg, #ec4899 0%, #be185d 100%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-enhanced-container {
+    padding: 10px;
+  }
+
+  .tabs-wrapper {
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    flex: 1 1 50%;
+    padding: 14px 10px;
+    font-size: 13px;
+    gap: 5px;
+  }
+
+  .tab-icon {
+    font-size: 16px;
+  }
+
+  .tab-pane {
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-card.metric-card-wide {
+    grid-column: 1;
+  }
+
+  .metric-value {
+    font-size: 32px;
+  }
+
+  .metric-value.large {
+    font-size: 36px;
+  }
+
+  .history-table {
+    font-size: 12px;
+  }
+
+  .history-table th,
+  .history-table td {
+    padding: 10px 8px;
+  }
+
+  .risk-bar {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab-btn {
+    flex: 1 1 100%;
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+
+  .tab-pane {
+    padding: 15px;
+  }
+
+  .metric-value {
+    font-size: 28px;
+  }
+
+  .history-table {
+    font-size: 11px;
+  }
+
+  .history-table th,
+  .history-table td {
+    padding: 8px 6px;
+  }
+}

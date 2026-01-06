@@ -96,9 +96,11 @@ def predict_transaction(data: dict):
         return {
             "transaction_id": data.get("transaction_id"),
             "prediction": "Fraud" if final_decision else "Legit",
+            "confidence": risk_score,
             "risk_score": risk_score,
             "rules_triggered": rules_triggered,
-            "explanation": explanation
+            "explanation": explanation,
+            "status": "success"
         }
 
     except HTTPException:

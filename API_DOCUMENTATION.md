@@ -1,0 +1,370 @@
+# API Documentation - Fraud Detection System
+
+## Base URL
+```
+http://localhost:8000
+```
+
+## Authentication
+Most endpoints support JWT token-based authentication. Include the token in the header:
+```
+Authorization: Bearer <your_token>
+```
+
+---
+
+## 1. Authentication Endpoints
+
+### Register User
+**POST** `/auth/register`
+
+**Request Body:**
+```json
+{
+  "username": "string",
+  "email": "user@example.com",
+  "password": "string"
+}
+```
+
+**Response:**
+```json
+{
+  "message": "Verification email sent"
+}
+```
+
+**Status Codes:**
+- 200: Registration successful
+- 400: Email already registered
+
+---
+
+### Login
+**POST** `/auth/login`
+
+**Request Body:**
+```json
+{
+  "email": "user@example.com",
+  "password": "string"
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "token": "jwt_token_here",
+  "user": {
+    "email": "user@example.com",
+    "name": "User Name"
+  }
+}
+```
+
+**Status Codes:**
+- 200: Login successful
+- 401: Invalid credentials
+
+---
+
+### Verify Email
+**GET** `/auth/verify-email`
+
+**Query Parameters:**
+- `token` (required): JWT verification token
+
+**Response:**
+```json
+{
+  "message": "Email verified successfully"
+}
+```
+
+**Status Codes:**
+- 200: Email verified
+- 400: Invalid or expired token
+
+---
+
+## 2. Fraud Detection Endpoint
+
+### Predict Fraud
+**POST** `/api/predict`
+
+**Description:** Analyzes a transaction and predicts if it's fraudulent using the ML model and LLM explanation.
+
+**Request Body:**
+```json
+{
+  "transaction_id": "TXN12345",
+  "customer_id": "CUST001",
+  "transaction_amount": 5000.50,
+  "account_age_days": 365,
+  "kyc_verified": "Yes",
+  "channel": "Online",
+  "hour": 14,
+  "weekday": 2,
+  "month": 6,
+  "is_high_value": 0
+}
+```
+
+**Response:**
+```json
+{
+  "transaction_id": "TXN12345",
+  "prediction": "Fraud",
+  "confidence": 0.85,
+  "risk_score": 0.85,
+  "rules_triggered": [
+    "High amount transaction",
+    "Unusual channel usage"
+  ],
+  "explanation": "This transaction has been flagged as potentially fraudulent due to its high amount (₹5000.50) and unusual usage pattern. The account typically shows transactions in the range of ₹2000-₹3000. Additionally, the transaction was made through the 'Online' channel at an unusual hour (14:00). These factors combined suggest a higher risk of fraud.",
+  "status": "success"
+}
+```
+
+**Request Parameters:**
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| transaction_id | string | Yes | Unique transaction identifier |
+| customer_id | string | Yes | Customer identifier |
+| transaction_amount | float | Yes | Amount in INR |
+| account_age_days | int | No | Age of account in days (default: 365) |
+| kyc_verified | string | Yes | "Yes" or "No" |
+| channel | string | Yes | "Online", "ATM", "Branch", or "Mobile" |
+| hour | int | Yes | Hour of transaction (0-23) |
+| weekday | int | Yes | Day of week (0=Monday, 6=Sunday) |
+| month | int | Yes | Month (1-12) |
+| is_high_value | int | Yes | 1 for high value, 0 for normal |
+
+**Response Fields:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| transaction_id | string | Echo of input transaction ID |
+| prediction | string | "Fraud" or "Legit" |
+| confidence | float | Confidence score (0-1) |
+| risk_score | float | Risk score (0-1) |
+| rules_triggered | array | List of fraud rules triggered |
+| explanation | string | AI-generated explanation |
+| status | string | "success" or "error" |
+
+**Status Codes:**
+- 200: Prediction successful
+- 400: Invalid input parameters
+- 500: Server error
+
+**Example cURL:**
+```bash
+curl -X POST http://localhost:8000/api/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "transaction_id": "TXN12345",
+    "customer_id": "CUST001",
+    "transaction_amount": 5000,
+    "account_age_days": 365,
+    "kyc_verified": "Yes",
+    "channel": "Online",
+    "hour": 14,
+    "weekday": 2,
+    "month": 6,
+    "is_high_value": 0
+  }'
+```
+
+---
+
+## 3. Metrics Endpoint
+
+### Get Model Performance Metrics
+**GET** `/api/metrics`
+
+**Description:** Returns the trained model's performance metrics.
+
+**Response:**
+```json
+{
+  "accuracy": 93,
+  "precision": 90,
+  "recall": 88,
+  "f1_score": 89,
+  "auc": 92,
+  "total_predictions": 1500,
+  "fraud_detected": 220,
+  "legit_detected": 1280
+}
+```
+
+**Response Fields:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| accuracy | float | Model accuracy percentage (0-100) |
+| precision | float | Precision percentage (0-100) |
+| recall | float | Recall percentage (0-100) |
+| f1_score | float | F1-Score percentage (0-100) |
+| auc | float | AUC-ROC score percentage (0-100) |
+| total_predictions | int | Total predictions made |
+| fraud_detected | int | Total fraud cases detected |
+| legit_detected | int | Total legit transactions |
+
+**Status Codes:**
+- 200: Metrics retrieved successfully
+- 500: Server error
+
+**Example cURL:**
+```bash
+curl http://localhost:8000/api/metrics
+```
+
+---
+
+## 4. Alerts Endpoint
+
+### Get Fraud Alerts
+**GET** `/api/alerts`
+
+**Description:** Retrieves all fraud alerts generated by the system.
+
+**Response:**
+```json
+{
+  "alerts": [
+    {
+      "id": 1,
+      "transaction_id": "TXN12345",
+      "customer_id": "CUST001",
+      "risk_score": 0.85,
+      "reason": "High amount transaction, Unusual channel usage",
+      "created_at": "2024-01-15T10:30:00Z",
+      "status": "pending"
+    }
+  ],
+  "total": 42
+}
+```
+
+**Status Codes:**
+- 200: Alerts retrieved successfully
+- 500: Server error
+
+---
+
+## 5. Transactions Endpoint
+
+### Get Transactions
+**GET** `/api/transactions`
+
+**Description:** Retrieves transaction history with optional filtering.
+
+**Query Parameters:**
+- `limit` (optional): Number of records to return (default: 100)
+- `offset` (optional): Pagination offset (default: 0)
+- `fraud_status` (optional): Filter by "fraud" or "legit"
+
+**Response:**
+```json
+{
+  "transactions": [
+    {
+      "transaction_id": "TXN12345",
+      "customer_id": "CUST001",
+      "amount": 5000.50,
+      "channel": "Online",
+      "is_fraud": 1,
+      "created_at": "2024-01-15T10:30:00Z"
+    }
+  ],
+  "total": 1500,
+  "limit": 100,
+  "offset": 0
+}
+```
+
+**Status Codes:**
+- 200: Transactions retrieved successfully
+- 500: Server error
+
+---
+
+## Error Handling
+
+All endpoints return errors in the following format:
+
+```json
+{
+  "detail": "Error message describing what went wrong"
+}
+```
+
+**Common HTTP Status Codes:**
+- `200`: Success
+- `400`: Bad Request (invalid parameters)
+- `401`: Unauthorized (authentication required)
+- `403`: Forbidden (permission denied)
+- `404`: Not Found
+- `500`: Internal Server Error
+- `503`: Service Unavailable
+
+---
+
+## Rate Limiting
+
+The API has rate limiting enabled:
+- **Limit**: 100 requests per minute per IP
+- **Headers**: Check `X-RateLimit-*` headers in response
+
+---
+
+## Testing with Postman
+
+1. **Import Collection**: Use the included `fraud-detection-api.postman_collection.json`
+2. **Set Variables**:
+   - `base_url`: `http://localhost:8000`
+   - `token`: (obtained from login endpoint)
+3. **Run Tests**: Execute requests in sequence
+
+---
+
+## Deployment Notes
+
+### Production Checklist
+
+- [ ] Set `allow_origins` in CORS middleware to specific domain
+- [ ] Enable HTTPS
+- [ ] Use environment variables for API keys
+- [ ] Implement rate limiting
+- [ ] Setup API monitoring and logging
+- [ ] Enable request validation
+- [ ] Configure CORS headers properly
+- [ ] Setup database backups
+- [ ] Enable audit logging
+
+### Environment Variables
+
+Create a `.env` file:
+```dotenv
+GEMINI_API_KEY=your_gemini_api_key
+DATABASE_URL=your_database_url
+JWT_SECRET=your_jwt_secret
+ENVIRONMENT=production
+```
+
+---
+
+## Support
+
+For issues or questions:
+- Check the logs: `/logs/app.log`
+- Review API response details for specific error messages
+- Check the backend GitHub issues page
+
+---
+
+**Last Updated**: January 2026
+**API Version**: 1.0.0

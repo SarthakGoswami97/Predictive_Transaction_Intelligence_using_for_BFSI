@@ -3,6 +3,7 @@ import os
 
 load_dotenv()
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from src.api.transactions import router as transaction_router
 from src.preprocessing.cleaning_pipeline import pipeline
 from src.preprocessing.train_test_split import create_train_test_split
@@ -16,6 +17,15 @@ from src.api.auth import router as auth_router
 
 
 app = FastAPI(title="Transaction API Backend")
+
+# Enable CORS for frontend communication
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, replace with specific frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Register API routes
 app.include_router(auth_router)

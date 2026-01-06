@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-import Dashboard from "./components/Dashboard";
+import DashboardEnhanced from "./components/DashboardEnhanced";
 
 import Predict from "./pages/Predict";
 import Metrics from "./pages/Metrics";
@@ -30,7 +30,7 @@ function App() {
   const renderPage = () => {
     switch (activePage) {
       case "dashboard":
-        return <Dashboard />;
+        return <DashboardEnhanced />;
       case "predict":
         return <Predict onCustomerIdChange={setCurrentCustomerId} />;
       case "metrics":
@@ -38,7 +38,7 @@ function App() {
       case "history":
         return <History />;
       default:
-        return <Dashboard />;
+        return <DashboardEnhanced />;
     }
   };
 
